@@ -4,7 +4,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import log_loss
 from sklearn.preprocessing import LabelEncoder
 
-# data setleri yüklüyoruz
 train = pd.read_csv("train.csv")
 test = pd.read_csv("test.csv")
 
@@ -13,7 +12,6 @@ print(train['Status'].value_counts())
 
 train = train[train['Status'].isin(['C', 'CL', 'D'])]
 y = train['Status'].map({'C': 0, 'CL': 1, 'D': 2})
-
 print("y'deki NaN Sayısı:", y.isnull().sum())
 
 categorical_cols = train.select_dtypes(include=['object']).columns
