@@ -7,12 +7,12 @@ from sklearn.preprocessing import LabelEncoder
 train = pd.read_csv("train.csv")
 test = pd.read_csv("test.csv")
 
-print("Status Sütunu Değerleri:")
+print("Status columns values:")
 print(train['Status'].value_counts())
 
 train = train[train['Status'].isin(['C', 'CL', 'D'])]
 y = train['Status'].map({'C': 0, 'CL': 1, 'D': 2})
-print("y'deki NaN Sayısı:", y.isnull().sum())
+print("NaN numbers in y:", y.isnull().sum())
 
 categorical_cols = train.select_dtypes(include=['object']).columns
 encoder = LabelEncoder()
@@ -36,4 +36,4 @@ test_preds = model.predict_proba(X_test)
 submission = pd.DataFrame(test_preds, columns=['Status_C', 'Status_CL', 'Status_D'])
 submission['id'] = test['id']
 submission.to_csv("submission.csv", index=False)
-print("Gönderim dosyası oluşturuldu: submission.csv")
+print("submission.csv saved")
