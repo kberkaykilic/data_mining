@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f5a14e6f-4d2b-4b92-b8f3-c3ab603c81b8" name="Changes" comment="test line!" />
+    <list default="true" id="f5a14e6f-4d2b-4b92-b8f3-c3ab603c81b8" name="Changes" comment="test line!">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_1.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/submission.csv" beforeDir="false" afterPath="$PROJECT_DIR$/submission.csv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -74,7 +78,7 @@
       <updated>1735142736096</updated>
       <workItem from="1735142736984" duration="1994000" />
       <workItem from="1735308016418" duration="329000" />
-      <workItem from="1735308795394" duration="330000" />
+      <workItem from="1735308795394" duration="1878000" />
     </task>
     <task id="LOCAL-00001" summary="test line!">
       <option name="closed" value="true" />
@@ -116,7 +120,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735309005410</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="test line!">
+      <option name="closed" value="true" />
+      <created>1735309264924</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1735309264924</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +150,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="test line!" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/data_mining_project$project_1.coverage" NAME="project_1 Coverage Results" MODIFIED="1735308132866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/data_mining_project$project_1.coverage" NAME="project_1 Coverage Results" MODIFIED="1735311564490" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
