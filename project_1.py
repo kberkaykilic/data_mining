@@ -4,6 +4,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import log_loss
 from sklearn.preprocessing import LabelEncoder
 
+# Load datasets
 train = pd.read_csv("train.csv")
 test = pd.read_csv("test.csv")
 
@@ -24,10 +25,11 @@ for col in categorical_cols:
 X = train.drop(columns=['id', 'Status'])
 X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=41)
 
+# Slightly adjusted hyperparameters for improvement
 hyperparameters = [
-    {'n_estimators': 100, 'max_depth': 10, 'min_samples_split': 2, 'min_samples_leaf': 1},
-    {'n_estimators': 200, 'max_depth': 20, 'min_samples_split': 5, 'min_samples_leaf': 2},
-    {'n_estimators': 150, 'max_depth': None, 'min_samples_split': 10, 'min_samples_leaf': 4},
+    {'n_estimators': 200, 'max_depth': 16, 'min_samples_split': 4, 'min_samples_leaf': 2},
+    {'n_estimators': 250, 'max_depth': 20, 'min_samples_split': 6, 'min_samples_leaf': 2},
+    {'n_estimators': 180, 'max_depth': None, 'min_samples_split': 8, 'min_samples_leaf': 3},
 ]
 
 best_log_loss = float('inf')
