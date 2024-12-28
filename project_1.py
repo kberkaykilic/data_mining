@@ -27,9 +27,9 @@ X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_st
 
 # Slightly adjusted hyperparameters for improvement
 hyperparameters = [
-    {'n_estimators': 200, 'max_depth': 16, 'min_samples_split': 4, 'min_samples_leaf': 2},
-    {'n_estimators': 250, 'max_depth': 20, 'min_samples_split': 6, 'min_samples_leaf': 2},
-    {'n_estimators': 180, 'max_depth': None, 'min_samples_split': 8, 'min_samples_leaf': 3},
+    {'n_estimators': 220, 'max_depth': 18, 'min_samples_split': 5, 'min_samples_leaf': 2},
+    {'n_estimators': 260, 'max_depth': 20, 'min_samples_split': 6, 'min_samples_leaf': 2},
+    {'n_estimators': 200, 'max_depth': 24, 'min_samples_split': 4, 'min_samples_leaf': 3},
 ]
 
 best_log_loss = float('inf')
