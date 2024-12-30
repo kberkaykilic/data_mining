@@ -1,31 +1,29 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
+import numpy as np
 from sklearn.preprocessing import StandardScaler, LabelEncoder
-from sklearn.ensemble import GradientBoostingClassifier
 from sklearn.metrics import log_loss
+from sklearn.model_selection import StratifiedKFold
+import xgboost as xgb
 
-# Verilerin yüklenmesi
+# Load data
 train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
 sample_submission = pd.read_csv('sample_submission.csv')
 
-# Eksik verilerin doldurulması
-# Sayısal sütunları medyan ile doldur
+# Handle missing values
 numerical_cols = train.select_dtypes(include=['float64']).columns
 for col in numerical_cols:
     train[col] = train[col].fillna(train[col].median())
     if col in test.columns:
         test[col] = test[col].fillna(train[col].median())
 
-# Fill categorical columns with mode
 categorical_cols = train.select_dtypes(include=['object']).columns
 for col in categorical_cols:
     train[col] = train[col].fillna(train[col].mode()[0])
     if col in test.columns:
         test[col] = test[col].fillna(train[col].mode()[0])
 
-
-# Kategorik değişkenlerin kodlanması
+# Encode categorical variables
 label_encoders = {}
 for col in ['Drug', 'Sex', 'Ascites', 'Hepatomegaly', 'Spiders', 'Edema', 'Status']:
     le = LabelEncoder()
@@ -34,41 +32,47 @@ for col in ['Drug', 'Sex', 'Ascites', 'Hepatomegaly', 'Spiders', 'Edema', 'Statu
         test[col] = le.transform(test[col])
     label_encoders[col] = le
 
-# Özellikler ve hedef değişken ayrımı
+# Features and target
 X = train.drop(columns=['id', 'Status'])
 y = train['Status']
 
-# Eğitim ve doğrulama setlerine ayırma
-X_train, X_val, y_train, y_val = train_test_split(X, y, test_size=0.2, random_state=42, stratify=y)
-
-# Verilerin ölçeklendirilmesi
+# Scale features
 scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_val = scaler.transform(X_val)
-X_test = scaler.transform(test.drop(columns=['id']))
+X_scaled = scaler.fit_transform(X)
+X_test_scaled = scaler.transform(test.drop(columns=['id']))
 
-# Optimize edilmiş Gradient Boosting modeli
-optimized_gbc = GradientBoostingClassifier(
-    n_estimators=300,
-    learning_rate=0.05,
-    max_depth=5,
-    subsample=0.8,
-    min_samples_split=5,
-    min_samples_leaf=2,
-    random_state=42
-)
+# Cross-validation with a slightly optimized XGBoost
+kf = StratifiedKFold(n_splits=10, shuffle=True, random_state=42)
+log_loss_values = []
+final_predictions = np.zeros((X_test_scaled.shape[0], len(np.unique(y))))
 
-# Modelin eğitilmesi
-optimized_gbc.fit(X_train, y_train)
+for train_idx, val_idx in kf.split(X_scaled, y):
+    X_train, X_val = X_scaled[train_idx], X_scaled[val_idx]
+    y_train, y_val = y.iloc[train_idx], y.iloc[val_idx]
 
-# Doğrulama setinde tahmin
-y_val_pred_proba = optimized_gbc.predict_proba(X_val)
-val_log_loss = log_loss(y_val, y_val_pred_proba)
-print(f"Validation Log Loss: {val_log_loss}")
+    model = xgb.XGBClassifier(
+        learning_rate=0.03,  # Slightly reduced learning rate
+        max_depth=5,
+        n_estimators=500,  # Moderate number of estimators
+        subsample=0.8,
+        colsample_bytree=0.8,
+        objective='multi:softprob',
+        eval_metric='mlogloss',
+        random_state=42
+    )
 
-# Test setinde tahmin ve submission dosyasının hazırlanması
-y_test_pred_proba = optimized_gbc.predict_proba(X_test)
+    model.fit(X_train, y_train)
+
+    val_pred = model.predict_proba(X_val)
+    log_loss_val = log_loss(y_val, val_pred)
+    log_loss_values.append(log_loss_val)
+
+    final_predictions += model.predict_proba(X_test_scaled) / kf.get_n_splits()
+
+print(f"Average Log Loss (Cross-Validation): {np.mean(log_loss_values)}")
+
+# Prepare submission
 submission = sample_submission.copy()
-submission[['Status_C', 'Status_CL', 'Status_D']] = y_test_pred_proba
-submission.to_csv('submission.csv', index=False)
-print("Submission dosyası kaydedildi: submission.csv")
+submission[['Status_C', 'Status_CL', 'Status_D']] = final_predictions
+submission.to_csv('submission_xgb_optimized_safe.csv', index=False)
+print("Submission file saved as: submission_xgb_optimized_safe.csv")
