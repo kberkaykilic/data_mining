@@ -81,3 +81,6 @@ submission[['Status_C', 'Status_CL', 'Status_D']] = test_predictions
 # Submission dosyasını kaydet
 submission.to_csv('submission.csv', index=False)
 print("Submission file saved as: submission.csv")
+
+"""IF THE CODE DOES'NT RUN PLEASE TRY scikit-learn's 1.5.1 version (change in python interpreter)"""
+"""PROCESS WILL FINISH IN A FIVE MINS. AROUND I HOPE SO :D PLS BE PATIENT"""
