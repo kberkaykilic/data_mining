@@ -7,6 +7,7 @@ import xgboost as xgb
 
 """IF THE CODE DOES'NT RUN PLEASE TRY scikit-learn's 1.5.1 version (change in python interpreter)"""
 """PROCESS WILL FINISH IN A FIVE MINS. AROUND I HOPE SO :D PLS BE PATIENT"""
+"""Kemal Berkay Kilic (1904290) and Toprak Taybara (1902756)"""
 
 train = pd.read_csv('train.csv')
 test = pd.read_csv('test.csv')
@@ -77,3 +78,4 @@ print("Submission file saved as: submission.csv")
 
 """IF THE CODE DOES'NT RUN PLEASE TRY scikit-learn's 1.5.1 version (change in python interpreter)"""
 """PROCESS WILL FINISH IN A FIVE MINS. AROUND I HOPE SO :D PLS BE PATIENT"""
+"""Kemal Berkay Kilic (1904290) and Toprak Taybara (1902756)"""
