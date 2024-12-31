@@ -5,14 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f5a14e6f-4d2b-4b92-b8f3-c3ab603c81b8" name="Changes" comment="best result is 0.3571!">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/project_1.py" beforeDir="false" afterPath="$PROJECT_DIR$/project_1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission_ensemble.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission_optimized.csv" beforeDir="false" afterPath="$PROJECT_DIR$/submission_optimized.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission_optimized_gbc.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission_xgb_optimized.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission_xgb_optimized_safe.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/submission_xgboost.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/submission_optimized.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,6 +91,7 @@
       <workItem from="1735577553189" duration="4000" />
       <workItem from="1735578414139" duration="358000" />
       <workItem from="1735630072640" duration="2526000" />
+      <workItem from="1735654923367" duration="351000" />
     </task>
     <task id="LOCAL-00001" summary="test line!">
       <option name="closed" value="true" />
@@ -227,7 +221,15 @@
       <option name="project" value="LOCAL" />
       <updated>1735577410679</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="best result is 0.3571!">
+      <option name="closed" value="true" />
+      <created>1735655200668</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1735655200668</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
