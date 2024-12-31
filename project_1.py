@@ -64,8 +64,8 @@ random_search = RandomizedSearchCV(
 
 random_search.fit(X_scaled, y)
 
-print(f"Best parameters: {random_search.best_params_}")
-print(f"Best log loss: {-random_search.best_score_}")
+print(f"best parameters: {random_search.best_params_}")
+print(f"best log loss: {-random_search.best_score_}")
 
 best_model = random_search.best_estimator_
 test_predictions = best_model.predict_proba(X_test_scaled)
@@ -74,7 +74,7 @@ submission = sample_submission.copy()
 submission[['Status_C', 'Status_CL', 'Status_D']] = test_predictions
 
 submission.to_csv('submission.csv', index=False)
-print("Submission file saved as: submission.csv")
+print("submission file saved as: submission.csv")
 
 """IF THE CODE DOES'NT RUN PLEASE TRY scikit-learn's 1.5.1 version (change in python interpreter)"""
 """PROCESS WILL FINISH IN A FIVE MINS. AROUND I HOPE SO :D PLS BE PATIENT"""
